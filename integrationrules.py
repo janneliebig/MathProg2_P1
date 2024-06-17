@@ -99,12 +99,12 @@ class IntegrationRules:
     def milne_rule(f: Function, M : int) -> float:
         a : float = f.interval[0]
         b : float = f.interval[1]
-        h = (b - a)/(90 * M)
+        h = (b - a)/(M)
         area : float = 0.0
-        for i in range(0, M ):
-            area += 7*f.at(a + (0/4)*(b-a)) + 32 * f.at(a + ((1)/4)*(b-a)) + 12 * f.at(a + ((2)/4)*(b-a)) + 32 * f.at(a + ((3)/4)*(b-a)) + 7 * f.at(a + ((4)/4)*(b-a))
+        for i in range(0, M):
+            area += 7*f.at(a + i*h) + 32 * f.at(a + (i+ 1/4)*h) + 12 * f.at(a + (i+1/2)*h) + 32 * f.at(a + (i+3/4)*h) + 7 * f.at(a + (i+1)*h)
 
-        return h * area
+        return (b-a)/(90 * M) * area
     
     def milne_rule_error(f: Function, M: int, xi: float) -> float:
         a : float = f.interval[0]

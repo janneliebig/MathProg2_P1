@@ -25,9 +25,14 @@ class IntegrationRules:
         return h * result
 
     def mid_point_rule_error(f : Function, M: int, xi: float) -> float:
-        # xi must be in (a,b)
-        h : float = (f.interval[1] - f.interval[0])/M
-        error : float = (f.interval[1] - f.interval[0])/24 * h**2 * f.derivative_at(2, xi)
+        b : float = f.interval[1]
+        a : float = f.interval[0]
+
+        if xi <= a or xi >= b:
+            raise Exception("Xi must be between a and b.")
+
+        h : float = (b - a)/M
+        error : float = (b - a)/24 * h**2 * f.derivative_at(2, xi)
         return error
     
     def trapezoid_rule(f: Function, M: int) -> float:
@@ -51,6 +56,10 @@ class IntegrationRules:
         b : float = f.interval[1]
         a : float = f.interval[0]
         h = (b-a)/M
+
+        if xi <= a or xi >= b:
+            raise Exception("Xi must be between a and b.")
+
         error = -(b-a)/12 * (h**2) * f.derivative_at(2, xi)
         return error
     
@@ -75,9 +84,12 @@ class IntegrationRules:
         return (h/6)*area
     
     def simpson_rule_error(f : Function, M : int, xi: float) -> float:
-        # xi must be in (a,b)
+        
         a : float = f.interval[0]
         b : float = f.interval[1]
+
+        if xi <= a or xi >= b:
+            raise Exception("Xi must be between a and b.")
 
         h : float = (b-a)/M
 
@@ -97,6 +109,10 @@ class IntegrationRules:
     def milne_rule_error(f: Function, M: int, xi: float) -> float:
         a : float = f.interval[0]
         b : float = f.interval[1]
+        
+        if xi <= a or xi >= b:
+            raise Exception("Xi must be between a and b.")
+        
         h = (b - a)/M
 
         error = (-2) * (b-a)/945 * ((h/4)**6) * f.derivative_at(6, xi)

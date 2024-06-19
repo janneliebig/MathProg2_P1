@@ -6,15 +6,39 @@ class Function:
         self.interval = (a,b)
 
     def at(self, x: float) -> float:
+        """
+        Returns value of function in x.
+
+        Args:
+            x: point -> float
+        Returns:
+            Returns exp(x) as default.
+        """
         return np.exp(x)
 
     def derivative_at(self, n: int, x: float) -> float:
+        """
+        Returns derivative of function in x.
+
+        Args:
+            x: point -> float
+        Returns:
+            Returns exp(x) as default as exp is its derivative.
+        """
         return np.exp(x)    
     
 
 class IntegrationRules:
     def mid_point_rule(f: Function, M: int) -> float:
-        n = 0
+        """
+        Returns the definite numeric integral of a function using the mid point rule.
+
+        Args:
+            f: Function -> Function
+            M: number of intervals -> int
+        Returns:
+            Approximate definite integral of f using mid point rule.
+        """
         h = (f.interval[1] - f.interval[0])/M
         result: float = 0.0
 
@@ -25,6 +49,17 @@ class IntegrationRules:
         return h * result
 
     def mid_point_rule_error(f : Function, M: int, xi: float) -> float:
+        """
+        Returns the numeric error of mid point rule.
+
+        Args:
+            f: Function -> Function
+            M: Number of intervals -> int
+            xi: Point in interval
+        
+        Returns:
+            Numeric error between integral and its approximation using the mid point rule. 
+        """
         b : float = f.interval[1]
         a : float = f.interval[0]
 
@@ -36,7 +71,15 @@ class IntegrationRules:
         return error
     
     def trapezoid_rule(f: Function, M: int) -> float:
-        n = 1
+        """
+        Returns the definite numeric integral of a function using the trapezoid rule.
+
+        Args:
+            f: Function -> Function
+            M: number of intervals -> int
+        Returns:
+            Approximate definite integral of f using trapezoid rule.
+        """
         b : float = f.interval[1]
         a : float = f.interval[0]
 
@@ -53,6 +96,17 @@ class IntegrationRules:
         return (h/2) * result
     
     def trapezoid_rule_error(f: Function, M: int, xi : float) -> float:
+        """
+        Returns the numeric error of trapezoid rule.
+
+        Args:
+            f: Function -> Function
+            M: Number of intervals -> int
+            xi: Point in interval
+        
+        Returns:
+            Numeric error between integral and its approximation using the trapezoid rule. 
+        """
         b : float = f.interval[1]
         a : float = f.interval[0]
         h = (b-a)/M
@@ -64,7 +118,15 @@ class IntegrationRules:
         return error
     
     def simpson_rule(f : Function, M: int) -> float:
-        n = 2
+        """
+        Returns the definite numeric integral of a function using the simpson rule.
+
+        Args:
+            f: Function -> Function
+            M: number of intervals -> int
+        Returns:
+            Approximate definite integral of f using the simpson rule. 
+        """
         b : float = f.interval[1]
         a : float = f.interval[0]
 
@@ -84,7 +146,17 @@ class IntegrationRules:
         return (h/6)*area
     
     def simpson_rule_error(f : Function, M : int, xi: float) -> float:
+        """
+        Returns the numeric error of simpson rule.
+
+        Args:
+            f: Function -> Function
+            M: Number of intervals -> int
+            xi: Point in interval
         
+        Returns:
+            Numeric error between integral and its approximation using the simpson rule. 
+        """
         a : float = f.interval[0]
         b : float = f.interval[1]
 
@@ -97,6 +169,15 @@ class IntegrationRules:
         return error
     
     def milne_rule(f: Function, M : int) -> float:
+        """
+        Returns the definite numeric integral of a function using the milne rule.
+
+        Args:
+            f: Function -> Function
+            M: number of intervals -> int
+        Returns:
+            Approximate definite integral of f using the milne rule. 
+        """
         a : float = f.interval[0]
         b : float = f.interval[1]
         h = (b - a)/(M)
@@ -107,6 +188,17 @@ class IntegrationRules:
         return (b-a)/(90 * M) * area
     
     def milne_rule_error(f: Function, M: int, xi: float) -> float:
+        """
+        Returns the numeric error of milne rule.
+
+        Args:
+            f: Function -> Function
+            M: Number of intervals -> int
+            xi: Point in interval
+        
+        Returns:
+            Numeric error between integral and its approximation using the milne rule. 
+        """
         a : float = f.interval[0]
         b : float = f.interval[1]
         

@@ -27,7 +27,7 @@ def plot_Error_M(f: Function,m: int):    #b)
 
     plt.title("Integration error for M = 2$^j$, $j \in \{0, \dots, 8\}$ and $xi = 0.$")
 
-    plt.xscale("log") # optional
+    #plt.xscale("log") # optional
     plt.xlabel("function eval.")
     plt.ylabel("intervals")
 
@@ -35,6 +35,14 @@ def plot_Error_M(f: Function,m: int):    #b)
     plt.show()    
 
 def plot_Error_n(f, M):   #c)
+    """
+    Plots integration error of each rule depending on number of function evaluations.
+
+    Args:
+        f: Function -> Function
+        start: Minimal number of function calls -> int
+        end: Maximal number of function calls -> int
+    """
     M=M+1
     result=np.zeros((M,4))
 

@@ -39,11 +39,13 @@ class IntegrationRules:
         Returns:
             Approximate definite integral of f using mid point rule.
         """
-        h = (f.interval[1] - f.interval[0])/M
+        b : float = f.interval[1]
+        a : float = f.interval[0]
+        h = (b - a)/M
         result: float = 0.0
 
         for i in range(1, M + 1):
-            x_k : float = f.interval[0] +  ((2*i - 1)*h)/2
+            x_k : float = a +  ((2*i - 1)*h)/2
             result += f.at(x_k)
 
         return h * result
@@ -212,12 +214,13 @@ class IntegrationRules:
         return error        
 
 f = Function(-1, 1)
+m = 100
 print("int_a^b exp(x) dx: " + str(np.exp(1) - np.exp(-1)))
-print("mid point rule:    " + str(IntegrationRules.mid_point_rule(f, 100)))
-print("mid point error:   " + str(IntegrationRules.mid_point_rule_error(f, 100, 0)))
-print("trapezoid rule:    " + str(IntegrationRules.trapezoid_rule(f, 100)))
-print("trapezoid error:   " + str(IntegrationRules.trapezoid_rule_error(f, 100, 0)))
-print("simpson rule:      " + str(IntegrationRules.simpson_rule(f, 100)))
-print("simpson error:     " + str(IntegrationRules.simpson_rule_error(f, 100, 0)))
-print("milne rule:        " + str(IntegrationRules.milne_rule(f, 100)))
-print("milne error:       " + str(IntegrationRules.milne_rule_error(f, 100, 0)))
+print("mid point rule:    " + str(IntegrationRules.mid_point_rule(f, m)))
+print("mid point error:   " + str(IntegrationRules.mid_point_rule_error(f, m, 0)))
+print("trapezoid rule:    " + str(IntegrationRules.trapezoid_rule(f, m)))
+print("trapezoid error:   " + str(IntegrationRules.trapezoid_rule_error(f, m, 0)))
+print("simpson rule:      " + str(IntegrationRules.simpson_rule(f, m)))
+print("simpson error:     " + str(IntegrationRules.simpson_rule_error(f, m, 0)))
+print("milne rule:        " + str(IntegrationRules.milne_rule(f, m)))
+print("milne error:       " + str(IntegrationRules.milne_rule_error(f, m, 0)))

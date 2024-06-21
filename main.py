@@ -44,16 +44,16 @@ def plot_Error_n(f, M):   #c)
         end: Maximal number of function calls -> int
     """
     M=M+1
-    result=np.zeros((M,4))
+    result=np.zeros((M,5))
 
     for M in range(0,M):
-        result[M][3] = abs(IntegrationRules.milne_rule_error(f, 2*2**M, 0))
+        result[M][4] = abs(IntegrationRules.milne_rule_error(f, 2*2**M, 0))
         result[M][1] = abs(IntegrationRules.trapezoid_rule_error(f, 2*2**M, 0))
         result[M][0] = abs(IntegrationRules.mid_point_rule_error(f, 2*2**M, 0))
         result[M][2] = abs(IntegrationRules.simpson_rule_error(f, 2*2**M, 0))
-
+        result[M][3] = result[M][2]+result[M][4]
     for M in range(0,M):
-        plt.plot(range(1,5),result[M])
+        plt.plot(range(0,5),result[M])
     plt.legend()
     plt.show()  
 
